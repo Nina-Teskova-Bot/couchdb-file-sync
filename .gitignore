@@ -10,3 +10,4 @@ move-test-local/
 _testdata/
 couchfs.yaml
 testing/
+.codex
