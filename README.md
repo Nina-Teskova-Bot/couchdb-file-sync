@@ -54,7 +54,7 @@ To measure scanner performance, run:
 cargo run --bin scanner-perf --release
 ```
 
-The helper creates a synthetic dataset, reports one cold scan, one initial warm scan, then repeats the warm scan `1000` times by default and prints min/median/avg/max timings. Override the dataset size or repeat count with `SCANNER_PERF_FILES`, `SCANNER_PERF_BYTES`, and `SCANNER_PERF_ITERATIONS`.
+The helper creates its synthetic dataset in a temporary directory, reports one cold scan, one initial warm scan, then repeats the warm scan `1000` times by default and prints min/median/avg/max timings. Override the dataset size or repeat count with `SCANNER_PERF_FILES`, `SCANNER_PERF_BYTES`, and `SCANNER_PERF_ITERATIONS`.
 
 ## Quick Start
 

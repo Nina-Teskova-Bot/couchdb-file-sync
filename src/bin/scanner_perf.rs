@@ -1,10 +1,11 @@
 use couchdb_file_sync::local::Scanner;
 use couchdb_file_sync::models::IgnoreMatcher;
 use std::fs;
-use std::path::PathBuf;
+use std::path::Path;
 use std::time::Instant;
+use tempfile::tempdir;
 
-fn make_dataset(root: &PathBuf, files: usize, bytes: usize) {
+fn make_dataset(root: &Path, files: usize, bytes: usize) {
     if root.exists() {
         fs::remove_dir_all(root).unwrap();
     }
@@ -26,7 +27,8 @@ fn parse_env_usize(key: &str, default: usize) -> usize {
 }
 
 fn main() {
-    let root = PathBuf::from("target/scanner-perf-data");
+    let dataset_root = tempdir().unwrap();
+    let root = dataset_root.path().join("scanner-perf-data");
     let files = parse_env_usize("SCANNER_PERF_FILES", 2_000);
     let bytes = parse_env_usize("SCANNER_PERF_BYTES", 4_096);
     let iterations = parse_env_usize("SCANNER_PERF_ITERATIONS", 1_000);
